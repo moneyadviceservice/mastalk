@@ -1,0 +1,9 @@
+# $=
+
+<div class="collapsible">
+  <button class="unstyled-button">
+    <span class="icon icon--toggle"></span>
+    <span class="visually-hidden js-collapsable-hidden"></span>
+    <%= Mastalk::Document.new(body).to_html %>
+  </button>
+</div>

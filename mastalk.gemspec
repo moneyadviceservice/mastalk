@@ -11,5 +11,5 @@ Gem::Specification.new do |s|
     'http://rubygems.org/'
   s.license       = 'MIT'
 
-  s.add_runtime_dependency 'kramdown', '~> 1.4.2'
+  s.add_runtime_dependency 'kramdown', '~> 1.5.0'
 end

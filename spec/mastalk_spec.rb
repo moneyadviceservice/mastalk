@@ -62,7 +62,7 @@ describe Mastalk::Document do
   context 'extension with other extensions inside' do
     let(:source) { "$why\n###header\nbody\n$why" }
 
-    let(:expected) { "<div class=\"why\">\n  <h3 id=\"header\">header</h3>\n<p>body</p>\n\n</div>\n\n" }
+    let(:expected) { "<div class=\"why\">\n  <h3 id=\"header\">header</h3>\n<p>body</p>\n\n</div>\n" }
 
     it 'parses nested structures' do
       expect(subject.to_html).to eq(expected)
@@ -70,11 +70,11 @@ describe Mastalk::Document do
   end
 
   context 'with newline as end' do
-    let(:source) { "$yes-no\n [y] yes\n [n] no\n $end $why\n###header\nbody\n$why" }
+    let(:source) { "$yes-no\n [y] yes \n [n] no \n $end $why\n###header\nbody\n$why" }
 
     let(:expected) do
-      "<ul class=\"yes-no\">\n  \n<li class=\"yes\">yes</li>\n<li class=\"no\">no</li>\n\n\n</ul>\n<div class=\"why\">
-  <h3 id=\"header\">header</h3>\n<p>body</p>\n\n</div>\n\n"
+      "<ul class=\"yes-no\">\n  \n<li class=\"yes\">yes</li>\n\n<li class=\"no\">no</li>\n\n\n</ul>\n<div class=\"why\">
+  <h3 id=\"header\">header</h3>\n<p>body</p>\n\n</div>\n"
     end
 
     it 'pre-processes custom tags' do
