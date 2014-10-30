@@ -4,7 +4,7 @@ The Money Advice Service's Markdown extension language.
 
 ## Components
 
-### Action
+### Add Action
 `.add-action` box
 
 ```
@@ -15,56 +15,8 @@ Outputs:
 
 ```
 <div class="add-action">
-  <a href="/en/articles/help-to-buy-schemes-faqs">Help to Buy schemes FAQs</a>
+ <p><a href="/en/articles/help-to-buy-schemes-faqs">Help to Buy schemes FAQs</a></p>
 </div>
-```
-
-### Table
-
-`.datatable-default`
-
-```
-$=table
-
-{caption} Budget for the other costs of buying a home
-
-| Equity loans            | Mortgage guarantees
-|---                      |---
-| New-build properties    | New-build and pre-owned properties
-| Minimum 5% deposit      | Minimum 5% deposit
-|===                      |===
-| April 2013              |
-
-=$
-```
-
-Outputs:
-
-```
-<table class="datatable-default">
-  <thead>
-  <tr>
-    <th>Heading</th>
-    <th>Heading 2</th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <tr>
-    <td>&nbsp;Equity loans</td>
-    <td>&nbsp;Mortgage guarantees</td>
-  </tr>
-  <tr>
-    <td><a title="News index" href="https://www.moneyadviceservice.org.uk/en/news">New-build properties</a></td>
-    <td><a title="BBC News site" target="_blank" href="http://www.bbc.co.uk/news/business/your_money/">New-build and
-      pre-owned properties</a></td>
-  </tr>
-  <tr>
-    <td>&nbsp;Minimum 5% deposit</td>
-    <td>&nbsp;Minimum 5% deposit</td>
-  </tr>
-  </tbody>
-</table>
 ```
 
 
@@ -74,12 +26,9 @@ Outputs:
 
 ```
 $=callout
-
 # Budgeting tips
-
 In 1985, average first-time buyers needed a deposit of 5% to buy a home - in 2012, this had increased to 20%
 *Source: HMS Treasury*
-
 =$
 ```
 
@@ -94,35 +43,52 @@ Outputs:
 </div>
 ```
 
-### Collapsible
+### Collapsible header
 
 ```
-$=collapsible
-
+$=
 # Before you borrow
+=$
 
+$-
 Find out if you need to borrow money and whether you can afford it. Learn how to work out the true cost of borrowing.
 
-# Taking control of debt
+Taking control of debt
 
 Where to get free debt advice, how to speak to the people you owe money to, and tips to help you pay back your debts in the right order.
-
-=$
+-$
 ```
 
 Outputs:
 
-**[TBC]**
+```
+<div class="collapsible is-on">
+  <button class="unstyled-button">
+    <span class="icon icon--toggle"></span>
+    <span class="visually-hidden js-collapsable-hidden">hide </span>
+    Before you borrow
+  </button>
+</div>
 
-### Benefits
+<div class="collapsible-section is-on" aria-hidden="false">
+  <p>Find out if you need to borrow money and whether you can afford it. Learn how to work out the true cost of borrowing.</p>
+  <p>Taking control of debt</p>
+  <p>Where to get free debt advice, how to speak to the people you owe money to, and tips to help you pay back your debts in the right order.</p>
+</div>
 
 ```
+
+### Ticks
+
+```
+$yes-no
 [y] You should do this
 [y] and then do this
 [y] and finally this
 [n] You should not do this
 [n] or this
 [n] and definitely not do this
+$end
 ```
 
 Outputs:
@@ -143,35 +109,56 @@ Outputs:
 `.video-wrapper`
 
 ```
-({300422})
+({5n1nixLSrQI})
 
 ```
 
 Outputs:
 
 ```
-<video
-    data-account="57838016001"
-    data-player="c5049c84-4364-47bc-a169-53886c6d7fcd"
-    data-embed="default"
-    data-id="300422"
-    class="video-js" controls>
-</video>
+<iframe
+  frameborder="0"
+  height="413"
+  width="680"
+  src= "https://www.youtube.com/embed/5n1nixLSrQI"
+  title="Video">
+</iframe>
 ```
 
 ### Action Item
 
 `.action-item`
 
-**Requirements TBC**
-
-### Horizontal rule
 ```
----
+$action
+## Header
+$collapsable
+$why
+  ### Why?
+  Your 'Cash ISA allowance
+$why
+$how
+  ### How?
+  If you already have an ISA
+$how
+$collapsable
+$item
 ```
 
 Outputs:
+```
+<div class="action-item">
+  <h2 id="header" role="heading" aria-level="2">Header</h2>
+  <div class="collapsable">
+    <div class="why">
+      <h3 id="why" role="heading" aria-level="3">Why?</h3>
+      <p>Your ‘Cash ISA allowance</p>
+    </div>
+    <div class="how">
+      <h3 id="how" role="heading" aria-level="3">How?</h3>
+      <p>If you already have an ISA</p>
+    </div>
+  </div>
+</div>
+```
 
-```
-<hr>
-```
