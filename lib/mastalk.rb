@@ -14,12 +14,12 @@ module Mastalk
     end
 
     def to_html
-      kramdown_doc.to_html
+      kramdown.to_html
     end
 
     private
 
-    def kramdown_doc
+    def kramdown
       Kramdown::Document.new(preprocess(source))
     end
 

@@ -2,6 +2,16 @@
 
 The Money Advice Service's Markdown extension language.
 
+## Usage
+
+```
+gem install mastalk
+```
+
+```
+Mastalk::Document.new("markdown").to_html
+```
+
 ## Components
 
 ### Add Action

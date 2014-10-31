@@ -2,8 +2,14 @@ require 'erb'
 
 module Mastalk
   # Extension DSL for adding new
-  # mastalk syntax
+  # mastalk snippets.
+  #
+  # Add new snippets in the form:
+  # # start_tag, end_tag, new_line_ending
+  #
+  # <p>replacement html <%= body %></p>
   module Extensions
+    SNIPPETS_FOLDER=File.join(File.dirname(__FILE__), 'snippets')
     @@extensions = []
 
     def extension(start, stop = nil, new_line = false, &block)
@@ -16,13 +22,12 @@ module Mastalk
     def extensions
       return @@extensions unless @@extensions.empty?
 
-      Dir.foreach(File.join(File.dirname(__FILE__), 'snippets')) do |file|
+      Dir.foreach(SNIPPETS_FOLDER) do |file|
         next if file == '.' || file == '..'
-        content = File.read(File.join(File.dirname(__FILE__), 'snippets', file))
+        content = File.read(File.join(SNIPPETS_FOLDER, file))
         start, stop, new_line = args(content)
-        content = remove_syntax_from(content)
         extension(start, stop, new_line == 'false') do |body|
-          ERB.new(content).result(binding)
+          ERB.new(remove_syntax_from(content)).result(binding)
         end
       end
 

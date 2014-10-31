@@ -3,17 +3,17 @@ require 'spec_helper'
 describe Mastalk::Document do
 
   context 'Without mastalk syntax' do
-    let(:context) { "###test\nwith other stuff" }
-    let(:expected) { "<h3 id=\"test\">test</h3>\n<p>with other stuff</p>\n" }
+    let(:context) { "###test\nwith markdown" }
+    let(:expected) { "<h3 id=\"test\">test</h3>\n<p>with markdown</p>\n" }
 
-    subject { Mastalk::Document.new(context).to_html }
+    subject { Mastalk::Document.new(context) }
 
     it 'kramdown behaviour with no tags' do
       expect(Mastalk::Document.new('test').to_html).to eq("<p>test</p>\n")
     end
 
     it 'converts to html' do
-      expect(subject).to eq(expected)
+      expect(subject.to_html).to eq(expected)
     end
 
     context 'multiline' do
@@ -21,7 +21,7 @@ describe Mastalk::Document do
       let(:context) { "### TEST\r\n\r\nwith other stuff\r\n\r\n " }
 
       it 'converts to html' do
-        expect(subject).to eq(expected)
+        expect(subject.to_html).to eq(expected)
       end
     end
   end
@@ -81,5 +81,4 @@ describe Mastalk::Document do
       expect(subject.to_html).to eq(expected)
     end
   end
-
 end
