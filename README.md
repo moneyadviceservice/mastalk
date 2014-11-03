@@ -1,4 +1,4 @@
-# MAStalk
+# MAStalk [![Build Status](https://travis-ci.org/moneyadviceservice/mastalk.svg)](https://travis-ci.org/moneyadviceservice/mastalk)
 
 The Money Advice Service's Markdown extension language.
 
