@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'mastalk'
-  s.version     = '0.1.0'
+  s.version     = '0.1.1'
   s.date        = '2014-10-31'
   s.summary     = 'mastalk'
   s.description = 'Mastalk markdown extension language'
