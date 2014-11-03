@@ -1,14 +1,16 @@
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+
 Gem::Specification.new do |s|
   s.name        = 'mastalk'
-  s.version     = '0.1.1'
+  s.version     = '0.1.2'
   s.date        = '2014-10-31'
   s.summary     = 'mastalk'
   s.description = 'Mastalk markdown extension language'
   s.authors     = ['Douglas Roper']
   s.email       = 'dougdroper@gmail.com'
-  s.files       = ['lib/mastalk.rb']
-  s.homepage    =
-    'http://rubygems.org/'
+  s.files       = `git ls-files`.split($/)
+  s.homepage    = 'https://github.com/moneyadviceservice/mastalk'
   s.license       = 'MIT'
 
   s.add_runtime_dependency 'kramdown', '~> 1.5.0', '>= 1.5.0'
