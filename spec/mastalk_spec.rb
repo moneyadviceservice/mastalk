@@ -73,11 +73,23 @@ describe Mastalk::Document do
     let(:source) { "$yes-no\n [y] yes \n [n] no \n $end $why\n###header\nbody\n$why" }
 
     let(:expected) do
-      "<ul class=\"yes-no\">\n  \n<li class=\"yes\">yes</li>\n\n<li class=\"no\">no</li>\n\n\n</ul>\n<div class=\"why\">
+      "<ul class=\"yes-no\">\n  \n <li class=\"yes\">yes</li>\n\n <li class=\"no\">no</li>\n\n \n</ul>\n<div class=\"why\">
   <h3 id=\"header\">header</h3>\n<p>body</p>\n\n</div>\n"
     end
 
     it 'pre-processes custom tags' do
+      expect(subject.to_html).to eq(expected)
+    end
+  end
+
+  context 'two matches after each other' do
+    let(:source) { "$yes-no\n [y] yes \n $end $yes-no\ [n] no \n $end" }
+
+    let(:expected) do
+      "<ul class=\"yes-no\">\n  \n <li class=\"yes\">yes</li>\n\n \n</ul>\n<ul class=\"yes-no\">\n   <li class=\"no\">no</li>\n\n \n</ul>\n"
+    end
+
+    it 'pre-processes correctly' do
       expect(subject.to_html).to eq(expected)
     end
   end

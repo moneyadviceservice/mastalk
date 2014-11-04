@@ -15,7 +15,7 @@ module Mastalk
     def extension(start, stop = nil, new_line = false, &block)
       re_start = Regexp.escape(start)
       re_stop = stop == '$' ? stop : Regexp.escape(stop || start)
-      regex = Regexp.new("#{re_start}(.*)(#{re_stop})", new_line ? 0 : Regexp::MULTILINE)
+      regex = Regexp.new("#{re_start}(.*?)(#{re_stop}+)", new_line ? 0 : Regexp::MULTILINE)
       @@extensions << [regex, block]
     end
 
