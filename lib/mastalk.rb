@@ -26,9 +26,10 @@ module Mastalk
     def preprocess(source)
       extensions.map do |regex, block|
         if source.match(regex)
-          source.gsub!(regex, block.call(Regexp.last_match.captures.first))
+          source.sub!(regex, block.call(Regexp.last_match.captures.first))
         end
       end
+      preprocess(source) if extensions.any? {|regex, _| source.match(regex)}
       source
     end
   end
