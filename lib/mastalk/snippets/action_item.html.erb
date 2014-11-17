@@ -1,5 +1,5 @@
 # $action, $item
 
 <div class='action-item'>
-  <%= body %>
+  <%= Kramdown::Document.new(body).to_html.gsub(/<p>|<\/p>/, '') %>
 </div>
