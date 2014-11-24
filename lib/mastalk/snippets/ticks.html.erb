@@ -1,5 +1,3 @@
 # $yes-no, $end
 
-<ul class='yes-no'>
-  <%= body %>
-</ul>
+<ul class='yes-no'><%= Mastalk::Document.new(body.strip).to_html.gsub(/<p>|<\/p>|\n/, '') %></ul>

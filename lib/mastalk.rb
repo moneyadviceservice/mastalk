@@ -1,4 +1,5 @@
 require 'kramdown'
+require 'htmlentities'
 require_relative 'mastalk/extensions'
 
 module Mastalk
@@ -14,7 +15,7 @@ module Mastalk
     end
 
     def to_html
-      kramdown.to_html
+      ::HTMLEntities.new.decode( kramdown.to_html )
     end
 
     private
@@ -26,7 +27,7 @@ module Mastalk
     def preprocess(source)
       extensions.map do |regex, block|
         if source.match(regex)
-          source.sub!(regex, block.call(Regexp.last_match.captures.first))
+          source.sub!(regex, block.call(Regexp.last_match.captures.first).strip)
         end
       end
       preprocess(source) if extensions.any? {|regex, _| source.match(regex)}

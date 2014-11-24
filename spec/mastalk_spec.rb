@@ -70,10 +70,10 @@ describe Mastalk::Document do
   end
 
   context 'with newline as end' do
-    let(:source) { "$yes-no\n [y] yes \n [n] no \n $end $why\n###header\nbody\n$why" }
+    let(:source) { "$yes-no\n [y] yes [/y] \n [n] no [/n] \n $end $why\n###header\nbody\n$why" }
 
     let(:expected) do
-      "<ul class=\"yes-no\">\n  \n <li class=\"yes\">yes</li>\n\n <li class=\"no\">no</li>\n\n \n</ul>\n<div class=\"why\">
+      "<ul class=\"yes-no\"><li class=\"yes\">yes</li><li class=\"no\">no</li></ul>\n<div class=\"why\">
   <h3 id=\"header\">header</h3>\n<p>body</p>\n\n</div>\n"
     end
 
@@ -83,14 +83,14 @@ describe Mastalk::Document do
   end
 
   context 'two matches after each other' do
-    let(:source) { "$yes-no\n [y] yes \n $end $yes-no\ [n] no \n $end" }
+    let(:source) { "$yes-no\n [y] **yes** [/y] \n $end $yes-no\ [n] **no** [/n] \n $end" }
 
     let(:expected) do
-      "<ul class=\"yes-no\">\n  \n <li class=\"yes\">yes</li>\n\n \n</ul>\n<ul class=\"yes-no\">\n   <li class=\"no\">no</li>\n\n \n</ul>\n"
+      "<ul class=\"yes-no\"><li class=\"yes\"><strong>yes</strong></li></ul><ul class=\"yes-no\"><li class=\"no\"><strong>no</strong></li></ul>"
     end
 
     it 'pre-processes correctly' do
-      expect(subject.to_html).to eq(expected)
+      expect(subject.to_html.gsub("\n", '')).to eq(expected)
     end
   end
 
@@ -99,6 +99,18 @@ describe Mastalk::Document do
 
     let(:expected) do
       "<div class=\"callout\">\n  <h2 id=\"yes\">yes</h2>\n\n</div>\n<div class=\"callout\">\n  <h2 id=\"yes\">yes</h2>\n\n</div>\n"
+    end
+
+    it 'pre-processes correctly' do
+      expect(subject.to_html).to eq(expected)
+    end
+  end
+
+  context 'ticks inside table' do
+    let(:source) { "|table|header|\n|$yes-no [y] yes [/y] $end|here|" }
+
+    let(:expected) do
+      "<table>\n  <tbody>\n    <tr>\n      <td>table</td>\n      <td>header</td>\n    </tr>\n    <tr>\n      <td><ul class='yes-no'><li class=\"yes\">yes</li></ul></td>\n      <td>here</td>\n    </tr>\n  </tbody>\n</table>\n"
     end
 
     it 'pre-processes correctly' do

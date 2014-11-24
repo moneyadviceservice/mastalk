@@ -12,10 +12,10 @@ module Mastalk
     SNIPPETS_FOLDER=File.join(File.dirname(__FILE__), 'snippets')
     @@extensions = []
 
-    def extension(start, stop = nil, new_line = false, &block)
+    def extension(start, stop = nil, &block)
       re_start = Regexp.escape(start)
-      re_stop = stop == '$' ? stop : Regexp.escape(stop || start)
-      regex = Regexp.new("#{re_start}(.*?)(#{re_stop}+)", new_line ? 0 : Regexp::MULTILINE)
+      re_stop = Regexp.escape(stop || start)
+      regex = Regexp.new("#{re_start}(.*?)(#{re_stop}+)", Regexp::MULTILINE)
       @@extensions << [regex, block]
     end
 
@@ -25,8 +25,8 @@ module Mastalk
       Dir.foreach(SNIPPETS_FOLDER) do |file|
         next if file == '.' || file == '..'
         content = File.read(File.join(SNIPPETS_FOLDER, file))
-        start, stop, new_line = args(content)
-        extension(start, stop, new_line == 'false') do |body|
+        start, stop = args(content)
+        extension(start, stop) do |body|
           ERB.new(remove_syntax_from(content)).result(binding)
         end
       end

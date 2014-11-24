@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
   s.license       = 'MIT'
 
   s.add_runtime_dependency 'kramdown', '~> 1.5.0', '>= 1.5.0'
+  s.add_runtime_dependency 'htmlentities', '~> 4.3.2', '>= 4.3.2'
   s.add_development_dependency 'rspec', '~> 3.1.0', '>= 3.1.0'
   s.add_development_dependency 'rake', '~> 10.3.2', '>= 10.3.2'
 end
