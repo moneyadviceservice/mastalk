@@ -117,4 +117,16 @@ describe Mastalk::Document do
       expect(subject.to_html).to eq(expected)
     end
   end
+
+  context 'line breaks' do
+    let(:source) { "@~ @~" }
+
+    let(:expected) do
+      "<p><br /> <br /></p>\n"
+    end
+
+    it 'pre-processes correctly' do
+      expect(subject.to_html).to eq(expected)
+    end
+  end
 end
