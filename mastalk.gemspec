@@ -3,8 +3,8 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
   s.name        = 'mastalk'
-  s.version     = '0.3.1'
-  s.date        = '2014-11-26'
+  s.version     = '0.3.2'
+  s.date        = '2014-12-02'
   s.summary     = 'mastalk'
   s.description = 'Mastalk markdown extension language'
   s.authors     = ['Douglas Roper']
