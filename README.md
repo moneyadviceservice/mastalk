@@ -192,3 +192,13 @@ Outputs:
 </div>
 ```
 
+### Line break
+
+```
+@~
+```
+
+Outputs:
+```
+<br />
+```
