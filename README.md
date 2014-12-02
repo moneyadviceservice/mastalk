@@ -92,12 +92,12 @@ Outputs:
 
 ```
 $yes-no
-[y] You should do this
-[y] and then do this
-[y] and finally this
-[n] You should not do this
-[n] or this
-[n] and definitely not do this
+[y] You should do this [/y]
+[y] and then do this [/y]
+[y] and finally this [/y]
+[n] You should not do this [/n]
+[n] or this [/n]
+[n] and definitely not do this [/n]
 $end
 ```
 
@@ -111,6 +111,26 @@ Outputs:
   <li class="no">You should not do this</li>
   <li class="no">or this</li>
   <li class="no">and definitely not do this</li>
+</ul>
+```
+
+### Bullets (inside tables)
+
+```
+$bullet
+[%] You should do this [/%]
+[%] and then do this [/%]
+[%] and finally this [/%]
+$point
+```
+
+Outputs:
+
+```
+<ul>
+  <li>You should do this</li>
+  <li>and then do this</li>
+  <li>and finally this</li>
 </ul>
 ```
 

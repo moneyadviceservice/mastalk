@@ -1,0 +1,3 @@
+# [%], [/%]
+
+<li><%= Kramdown::Document.new(body.strip).to_html.gsub(/<p>|<\/p>|\n/, '') %></li>

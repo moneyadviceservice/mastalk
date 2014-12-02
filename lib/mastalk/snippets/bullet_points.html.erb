@@ -1,0 +1,3 @@
+# $bullet, $point
+
+<ul><%= Mastalk::Document.new(body.strip).to_html.gsub(/<p>|<\/p>|\n/, '') %></ul>

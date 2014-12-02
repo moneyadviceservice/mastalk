@@ -118,6 +118,18 @@ describe Mastalk::Document do
     end
   end
 
+  context 'bullets inside table' do
+    let(:source) { "|table|header|\n|$bullet [%] yes [/%] $point|here|" }
+
+    let(:expected) do
+      "<table>\n  <tbody>\n    <tr>\n      <td>table</td>\n      <td>header</td>\n    </tr>\n    <tr>\n      <td><ul><li>yes</li></ul></td>\n      <td>here</td>\n    </tr>\n  </tbody>\n</table>\n"
+    end
+
+    it 'pre-processes correctly' do
+      expect(subject.to_html).to eq(expected)
+    end
+  end
+
   context 'line breaks' do
     let(:source) { "@~ @~" }
 
