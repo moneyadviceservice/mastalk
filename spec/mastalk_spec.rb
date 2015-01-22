@@ -141,4 +141,12 @@ describe Mastalk::Document do
       expect(subject.to_html).to eq(expected)
     end
   end
+
+  context 'bright video' do
+    let(:source) { "(@123@)" }
+
+    it 'pre-processes correctly' do
+      expect(subject.to_html).to match(/videoId\=123/)
+    end
+  end
 end
