@@ -142,11 +142,19 @@ describe Mastalk::Document do
     end
   end
 
-  context 'bright video' do
+  context 'when bright video' do
     let(:source) { "(@123@)" }
 
     it 'pre-processes correctly' do
       expect(subject.to_html).to match(/videoId\=123/)
+    end
+  end
+
+  context 'when youtube video' do
+    let(:source) { '({oZ0_U108aZw})' }
+
+    it 'includes youtube embed video' do
+      expect(subject.to_html).to include('https://www.youtube.com/embed/oZ0_U108aZw')
     end
   end
 end
