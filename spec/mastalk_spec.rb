@@ -142,11 +142,11 @@ describe Mastalk::Document do
     end
   end
 
-  context 'when bright video' do
-    let(:source) { "(@123@)" }
+  context 'bright video' do
+    let(:source) { "[[3739688349001]]" }
 
     it 'pre-processes correctly' do
-      expect(subject.to_html).to match(/videoId\=123/)
+      expect(subject.to_html).to match(/videoId\=3739688349001/)
     end
   end
 
