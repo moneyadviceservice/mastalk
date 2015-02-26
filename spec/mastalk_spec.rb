@@ -170,4 +170,28 @@ describe Mastalk::Document do
     end
   end
 
+  context 'collapsable section' do
+    let(:source) { '$- -$' }
+
+    let(:expected) do
+      %(<div class="collapsible-section">\n  \n\n</div>\n)
+    end
+
+    it 'pre-processes correctly' do
+      expect(subject.to_html).to eq(expected)
+    end
+  end
+
+  context 'collapsable header' do
+    let(:source) { '$= Content =$' }
+
+    let(:expected) do
+      %(<div class="collapsible">\n  <button class="unstyled-button">\n    <span class="icon icon--toggle"></span>\n    <span class=\"visually-hidden js-collapsable-hidden\"></span>\n     Content \n  </button>\n</div>\n)
+    end
+
+    it 'pre-processes correctly' do
+      expect(subject.to_html).to eq(expected)
+    end
+  end
+
 end
