@@ -157,4 +157,17 @@ describe Mastalk::Document do
       expect(subject.to_html).to include('https://www.youtube.com/embed/oZ0_U108aZw')
     end
   end
+
+  context 'block with media and content' do
+    let(:source) { '$bl $bl_c Content bl_c$ $bl_m bl_m$ bl$' }
+
+    let(:expected) do
+      %(<div class="l-block">\n  <div class="l-block__content">  Content</div><div class="l-block__media">  </div>\n</div>\n)
+    end
+
+    it 'pre-processes correctly' do
+      expect(subject.to_html).to eq(expected)
+    end
+  end
+
 end

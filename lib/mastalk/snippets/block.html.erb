@@ -1,0 +1,5 @@
+# $bl, bl$
+
+<div class="l-block">
+  <%= Mastalk::Document.new(body.strip).to_html.gsub(/<p>|<\/p>|\n/, '') %>
+</div>
