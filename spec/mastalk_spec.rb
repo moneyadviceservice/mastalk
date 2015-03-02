@@ -113,7 +113,7 @@ describe Mastalk::Document do
       "<table>\n  <tbody>\n    <tr>\n      <td>table</td>\n      <td>header</td>\n    </tr>\n    <tr>\n      <td><ul class='yes-no'><li class=\"yes\">yes</li></ul></td>\n      <td>here</td>\n    </tr>\n  </tbody>\n</table>\n"
     end
 
-    it 'pre-processes correctly' do
+    it 'outputs ticks inside a table' do
       expect(subject.to_html).to eq(expected)
     end
   end
@@ -125,7 +125,7 @@ describe Mastalk::Document do
       "<table>\n  <tbody>\n    <tr>\n      <td>table</td>\n      <td>header</td>\n    </tr>\n    <tr>\n      <td><ul><li>yes</li></ul></td>\n      <td>here</td>\n    </tr>\n  </tbody>\n</table>\n"
     end
 
-    it 'pre-processes correctly' do
+    it 'outputs a bullet list inside a table' do
       expect(subject.to_html).to eq(expected)
     end
   end
@@ -137,7 +137,7 @@ describe Mastalk::Document do
       "<p><br /> <br /></p>\n"
     end
 
-    it 'pre-processes correctly' do
+    it 'outputs a line break' do
       expect(subject.to_html).to eq(expected)
     end
   end
@@ -153,8 +153,45 @@ describe Mastalk::Document do
   context 'when youtube video' do
     let(:source) { '({oZ0_U108aZw})' }
 
-    it 'includes youtube embed video' do
+    it 'outputs the youtube embed video' do
       expect(subject.to_html).to include('https://www.youtube.com/embed/oZ0_U108aZw')
     end
   end
+
+  context 'block with media and content' do
+    let(:source) { '$bl $bl_c Content bl_c$ $bl_m bl_m$ bl$' }
+
+    let(:expected) do
+      %(<div class="l-block">\n  <div class="l-block__content">  <div class="panel panel--block">    Content  </div></div><div class="l-block__media">  </div>\n</div>\n)
+    end
+
+    it 'outputs a block layout with media and content container blocks' do
+      expect(subject.to_html).to eq(expected)
+    end
+  end
+
+  context 'collapsable section' do
+    let(:source) { '$- -$' }
+
+    let(:expected) do
+      %(<div class="collapsible-section">\n  \n\n</div>\n)
+    end
+
+    it 'outputs a collapsible section block' do
+      expect(subject.to_html).to eq(expected)
+    end
+  end
+
+  context 'collapsable header' do
+    let(:source) { '$= Content =$' }
+
+    let(:expected) do
+      %(<div class="collapsible">\n  <button class="unstyled-button">\n    <span class="icon icon--toggle"></span>\n    <span class=\"visually-hidden js-collapsable-hidden\"></span>\n     Content \n  </button>\n</div>\n)
+    end
+
+    it 'outputs a collapsible header' do
+      expect(subject.to_html).to eq(expected)
+    end
+  end
+
 end

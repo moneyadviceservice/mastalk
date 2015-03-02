@@ -1,0 +1,7 @@
+# $bl_c, bl_c$
+
+<div class="l-block__content">
+  <div class="panel panel--block">
+    <%= Mastalk::Document.new(body.strip).to_html.gsub(/<p>|<\/p>|\n/, '') %>
+  </div>
+</div>

@@ -213,3 +213,38 @@ Outputs:
 ```
 <br />
 ```
+
+### Block
+
+Creates a simple two column layout with content `$bl_c` on one side and `$bl_m` opposite.
+
+* `$bl_c` is intended to contain content of any type.
+* `$bl_m` is intended to contain images, i.e. `![Alt text](img.gif)`, or video, i.e. `({5n1nixLSrQI})` or `(@3739688349001@)`.
+
+
+```
+$bl
+
+$bl_c
+
+$bl_c
+
+$bl_m
+
+$bl_m
+
+bl$
+```
+
+Outputs:
+
+```
+<div class="l-block">
+  <div class="l-block__content">
+    <div class="panel panel--block"></div>
+  </div>
+  <div class="l-block__media"></div>
+</div>
+```
+
+`$bl_c` `$bl_m` positioning can be swapped around to switch element positions.
