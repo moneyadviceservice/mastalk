@@ -162,7 +162,7 @@ describe Mastalk::Document do
     let(:source) { '$bl $bl_c Content bl_c$ $bl_m bl_m$ bl$' }
 
     let(:expected) do
-      %(<div class="l-block">\n  <div class="l-block__content">  Content</div><div class="l-block__media">  </div>\n</div>\n)
+      %(<div class="l-block">\n  <div class="l-block__content">  <div class="panel panel--block">    Content  </div></div><div class="l-block__media">  </div>\n</div>\n)
     end
 
     it 'outputs a block layout with media and content container blocks' do
