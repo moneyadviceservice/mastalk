@@ -227,11 +227,11 @@ $bl
 
 $bl_c
 
-$bl_c
+bl_c$
 
 $bl_m
 
-$bl_m
+bl_m$
 
 bl$
 ```
