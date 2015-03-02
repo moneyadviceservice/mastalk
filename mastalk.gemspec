@@ -3,11 +3,11 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
   s.name        = 'mastalk'
-  s.version     = '0.3.4'
-  s.date        = '2015-02-24'
+  s.version     = '0.3.5'
+  s.date        = '2015-03-02'
   s.summary     = 'mastalk'
   s.description = 'Mastalk markdown extension language'
-  s.authors     = ['Douglas Roper']
+  s.authors     = ['Douglas Roper', 'Justin Perry']
   s.email       = 'dougdroper@gmail.com'
   s.files       = `git ls-files`.split($/)
   s.homepage    = 'https://github.com/moneyadviceservice/mastalk'
