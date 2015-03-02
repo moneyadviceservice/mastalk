@@ -9,7 +9,7 @@ module Mastalk
   #
   # <p>replacement html <%= body %></p>
   module Extensions
-    SNIPPETS_FOLDER=File.join(File.dirname(__FILE__), 'snippets')
+    SNIPPETS_FOLDER = File.join(File.dirname(__FILE__), 'snippets')
     @@extensions = []
 
     def extension(start, stop = nil, &block)
