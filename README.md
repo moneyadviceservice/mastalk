@@ -240,7 +240,9 @@ Outputs:
 
 ```
 <div class="l-block">
-  <div class="l-block__content"></div>
+  <div class="l-block__content">
+    <div class="panel panel--block"></div>
+  </div>
   <div class="l-block__media"></div>
 </div>
 ```
