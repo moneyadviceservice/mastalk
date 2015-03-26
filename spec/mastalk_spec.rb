@@ -194,4 +194,28 @@ describe Mastalk::Document do
     end
   end
 
+  context 'anchor link' do
+    let(:source) { '=(foo)'}
+
+    let(:expected) do
+      %(<p><a id="foo" data-anchor=""></a></p>\n)
+    end
+
+    it 'outpus an anchor tag' do
+      expect(subject.to_html).to eq(expected)
+    end
+  end
+
+  context 'anchor link inside a non-paragraph tag' do
+    let(:source) { '## =(foo) Heading text'}
+
+    let(:expected) do
+      %(<h2 id="heading-text"><a id="foo" data-anchor=""></a> Heading text</h2>\n)
+    end
+
+    it 'outpus an anchor tag' do
+      expect(subject.to_html).to eq(expected)
+    end
+  end
+
 end
