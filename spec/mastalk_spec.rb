@@ -210,7 +210,7 @@ describe Mastalk::Document do
     let(:source) { '## =(foo) Heading text'}
 
     let(:expected) do
-      %(<h2 id="heading-text"><a id="foo" data-anchor=""></a> Heading text</h2>\n)
+      "<h2 id=\"a-idfoo-data-anchora-heading-text\"><a id=\"foo\" data-anchor=\"\"></a> Heading text</h2>\n"
     end
 
     it 'outpus an anchor tag' do

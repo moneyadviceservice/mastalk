@@ -1,3 +1,3 @@
 # =(, )
 
-<a id="<%= body.strip %>" data-anchor></a>
+<%= Kramdown::Document.new('<a id="' + body.strip +  '" data-anchor></a>').to_html.gsub(/<p>|<\/p>/, '') %>
