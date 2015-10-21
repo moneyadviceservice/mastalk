@@ -4,6 +4,7 @@
   <iframe id="calculator_embed"
 		  frameborder="0"
 		  width="100%"
+		  height="1000px"
 		  class="calculator-preview__iframe"
 		  src="https://www.moneyadviceservice.org.uk/en/cost-calculator-builder/embed/calculators/<%= Mastalk::Document.new(body.strip).to_html.gsub(/<br \/>|<p>|<\/p>|\n/, '') %>">
   </iframe>
