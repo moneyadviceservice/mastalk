@@ -1,0 +1,12 @@
+# $~cost-calc, ~$
+
+<div class="l-container-tool">
+  <iframe id="calculator_embed"
+		  frameborder="0"
+		  width="100%"
+		  height="1000px"
+		  class="calculator-preview__iframe"
+		  src="https://www.moneyadviceservice.org.uk/en/cost-calculator-builder/embed/calculators/<%= Mastalk::Document.new(body.strip).to_html.gsub(/<br \/>|<p>|<\/p>|\n/, '') %>">
+  </iframe>
+  <script src="https://6716c801720b2d014ddd-90dd74bb468e514261468bbc28ae4817.ssl.cf3.rackcdn.com/a/cost_calculator_builder/embed-06ce0df8c79534fead5871af5a3875bd.js"></script>
+</div>

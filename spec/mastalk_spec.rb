@@ -150,6 +150,14 @@ describe Mastalk::Document do
     end
   end
 
+  context 'cost calculator' do
+    let(:source) {"$~cost-calc1~$"}
+
+    it 'pre-processes correctly' do
+      expect(subject.to_html).to include('https://www.moneyadviceservice.org.uk/en/cost-calculator-builder/embed/calculators/1')
+    end
+  end
+
   context 'when youtube video' do
     let(:source) { '({oZ0_U108aZw})' }
 
