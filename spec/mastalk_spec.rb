@@ -162,7 +162,7 @@ describe Mastalk::Document do
     let(:source) { '({oZ0_U108aZw})' }
 
     it 'outputs the youtube embed video' do
-      expect(subject.to_html).to include('https://www.youtube.com/embed/oZ0_U108aZw')
+      expect(subject.to_html).to include('https://www.youtube.com/embed/oZ0_U108aZw?rel=0')
     end
   end
 
