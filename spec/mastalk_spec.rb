@@ -146,7 +146,7 @@ describe Mastalk::Document do
     let(:source) { "$~brightcove_video3739688349001~$" }
 
     it 'pre-processes correctly' do
-      expect(subject.to_html).to match(/data-video-id\="3739688349001"/)
+      expect(subject.to_html).to include('//players.brightcove.net/3608769895001/b15c0e6a-51da-4bb1-b717-bccae778670d_default/index.html?videoId=3739688349001')
     end
   end
 
