@@ -166,6 +166,14 @@ describe Mastalk::Document do
     end
   end
 
+  context 'vimeo video' do
+    let(:source) { "$~vimeo_video145743834~$" }
+
+    it 'pre-processes correctly' do
+      expect(subject.to_html).to include('https://player.vimeo.com/video/145743834?portrait=0&title=0&byline=0')
+    end
+  end
+
   context 'block with media and content' do
     let(:source) { '$bl $bl_c Content bl_c$ $bl_m bl_m$ bl$' }
 
