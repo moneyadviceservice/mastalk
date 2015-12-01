@@ -156,14 +156,40 @@ Outputs:
 ```
 
 ```
-(@3739688349001@)
+$~brightcove_video
+  3739688349001
+~$
 
 ```
 
 Outputs:
 
 ```
-Brightcove video embed
+<iframe src='//players.brightcove.net/3608769895001/b15c0e6a-51da-4bb1-b717-bccae778670d_default/index.html?videoId=3739688349001'
+  frameBorder="0"
+  allowfullscreen=""
+  webkitallowfullscreen=""
+  mozallowfullscreen=""
+  height="413"
+  width="680" >
+</iframe>
+```
+
+```
+$~vimeo_video
+  146226360
+~$
+
+```
+Outputs:
+
+```
+<iframe src="https://player.vimeo.com/video/146226360?portrait=0&title=0&byline=0"
+  frameborder="0"
+  webkitallowfullscreen
+  mozallowfullscreen
+  allowfullscreen>
+</iframe>
 ```
 
 ### Action Item
