@@ -195,11 +195,32 @@ describe Mastalk::Document do
     end
   end
 
-  context 'vimeo video' do
-    let(:source) { "$~vimeo_video145743834~$" }
+  context 'when vimeo video' do
+    let(:video_id) { '145743834' }
 
-    it 'pre-processes correctly' do
-      expect(subject.to_html).to include('https://player.vimeo.com/video/145743834?portrait=0&title=0&byline=0')
+    context 'without a title' do
+      let(:source) { "$~vimeo_video#{video_id}~$" }
+
+      it 'outputs the vimeo embed video' do
+        expect(subject.to_html).to include("src=\"https://player.vimeo.com/video/#{video_id}?portrait=0&title=0&byline=0\"")
+      end
+
+      it 'outputs sets a default title on the iframe' do
+        expect(subject.to_html).to include('title="Video"')
+      end
+    end
+
+    context 'without a custom title' do
+      let(:title) { 'a custom video title' }
+      let(:source) { "$~vimeo_video#{video_id}\n#{title}~$" }
+
+      it 'outputs the vimeo embed video' do
+        expect(subject.to_html).to include("src=\"https://player.vimeo.com/video/#{video_id}?portrait=0&title=0&byline=0\"")
+      end
+
+      it 'outputs sets a default title on the iframe' do
+        expect(subject.to_html).to include("title=\"#{title}\"")
+      end
     end
   end
 

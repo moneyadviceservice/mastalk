@@ -1,7 +1,8 @@
 # $~vimeo_video, ~$
 
 <div class="video-wrapper">
-  <iframe src="https://player.vimeo.com/video/<%= body.strip %>?portrait=0&title=0&byline=0"
+  <iframe src="https://player.vimeo.com/video/<%= body_lines[0].strip %>?portrait=0&title=0&byline=0"
+          title="<%= (body_lines[1] || 'Video').strip %>"
           frameborder="0"
           webkitallowfullscreen
           mozallowfullscreen
