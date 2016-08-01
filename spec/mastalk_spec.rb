@@ -142,11 +142,32 @@ describe Mastalk::Document do
     end
   end
 
-  context 'bright video' do
-    let(:source) { "$~brightcove_video3739688349001~$" }
+  context 'when brightcove video' do
+    let(:video_id) { '3739688349001' }
 
-    it 'pre-processes correctly' do
-      expect(subject.to_html).to include('//players.brightcove.net/3608769895001/b15c0e6a-51da-4bb1-b717-bccae778670d_default/index.html?videoId=3739688349001')
+    context 'without a title' do
+      let(:source) { "$~brightcove_video#{video_id}~$" }
+
+      it 'outputs the brightcove embed video' do
+        expect(subject.to_html).to include("src=\"//players.brightcove.net/3608769895001/b15c0e6a-51da-4bb1-b717-bccae778670d_default/index.html?videoId=#{video_id}\"")
+      end
+
+      it 'outputs sets a default title on the iframe' do
+        expect(subject.to_html).to include('title="Video"')
+      end
+    end
+
+    context 'without a custom title' do
+      let(:title) { 'a custom video title'}
+      let(:source) { "$~brightcove_video#{video_id}\n#{title}~$" }
+
+      it 'outputs the brightcove embed video' do
+        expect(subject.to_html).to include("src=\"//players.brightcove.net/3608769895001/b15c0e6a-51da-4bb1-b717-bccae778670d_default/index.html?videoId=#{video_id}\"")
+      end
+
+      it 'outputs sets a default title on the iframe' do
+        expect(subject.to_html).to include("title=\"#{title}\"")
+      end
     end
   end
 

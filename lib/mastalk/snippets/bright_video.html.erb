@@ -1,7 +1,8 @@
 # $~brightcove_video, ~$
 
 <div class="video-wrapper">
-  <iframe src='//players.brightcove.net/3608769895001/b15c0e6a-51da-4bb1-b717-bccae778670d_default/index.html?videoId=<%= body.strip %>'
+  <iframe src='//players.brightcove.net/3608769895001/b15c0e6a-51da-4bb1-b717-bccae778670d_default/index.html?videoId=<%= body_lines[0].strip %>'
+          title="<%= (body_lines[1] || 'Video').strip %>"
           frameBorder="0"
           allowfullscreen=""
           webkitallowfullscreen=""
