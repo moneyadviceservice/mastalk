@@ -158,11 +158,40 @@ describe Mastalk::Document do
     end
   end
 
-  context 'when youtube video' do
+  context 'when youtube video (legacy format)' do
     let(:source) { '({oZ0_U108aZw})' }
 
     it 'outputs the youtube embed video' do
       expect(subject.to_html).to include('https://www.youtube.com/embed/oZ0_U108aZw?rel=0')
+    end
+  end
+
+  context 'when youtube video (new format)' do
+    let(:video_id) { 'oZ0_U108aZw' }
+
+    context 'without a title' do
+      let(:source) { "$~youtube_video#{video_id}~$" }
+
+      it 'outputs the youtube embed video' do
+        expect(subject.to_html).to include("src=\"https://www.youtube.com/embed/#{video_id}?rel=0\"")
+      end
+
+      it 'outputs sets a default title on the iframe' do
+        expect(subject.to_html).to include('title="Video"')
+      end
+    end
+
+    context 'without a custom title' do
+      let(:title) { 'a custom video title' }
+      let(:source) { "$~youtube_video#{video_id}\n#{title}~$" }
+
+      it 'outputs the youtube embed video' do
+        expect(subject.to_html).to include("src=\"https://www.youtube.com/embed/#{video_id}?rel=0\"")
+      end
+
+      it 'outputs sets a default title on the iframe' do
+        expect(subject.to_html).to include("title=\"#{title}\"")
+      end
     end
   end
 
