@@ -138,9 +138,52 @@ Outputs:
 
 `.video-wrapper`
 
+Embedding a YouTube video:
+
+```
+$~youtube_video
+  5n1nixLSrQI
+~$
+
+```
+Outputs:
+
+```
+<iframe
+  frameborder="0"
+  height="413"
+  width="680"
+  src= "https://www.youtube.com/embed/5n1nixLSrQI"
+  title="Video">
+</iframe>
+```
+
+Or with a custom title:
+
+```
+$~youtube_video
+  5n1nixLSrQI
+  The title of this video
+~$
+
+```
+Outputs:
+
+```
+<iframe
+  frameborder="0"
+  height="413"
+  width="680"
+  src= "https://www.youtube.com/embed/5n1nixLSrQI"
+  title="The title of this video">
+</iframe>
+```
+
+Alternatively there is also this legacy format (just here for backward
+compatibility):
+
 ```
 ({5n1nixLSrQI})
-
 ```
 
 Outputs:
@@ -155,11 +198,12 @@ Outputs:
 </iframe>
 ```
 
+Embedding a Brightcove video:
+
 ```
 $~brightcove_video
   3739688349001
 ~$
-
 ```
 
 Outputs:
@@ -175,9 +219,54 @@ Outputs:
 </iframe>
 ```
 
+Or with a custom title:
+
+```
+$~brightcove_video
+  3739688349001
+  The title of this video
+~$
+```
+
+Outputs:
+
+```
+<iframe src='//players.brightcove.net/3608769895001/b15c0e6a-51da-4bb1-b717-bccae778670d_default/index.html?videoId=3739688349001'
+  title="The title of this video"
+  frameBorder="0"
+  allowfullscreen=""
+  webkitallowfullscreen=""
+  mozallowfullscreen=""
+  height="413"
+  width="680" >
+</iframe>
+```
+
+Embedding a Vimeo video:
+
 ```
 $~vimeo_video
   146226360
+~$
+```
+
+Outputs:
+
+```
+<iframe src="https://player.vimeo.com/video/146226360?portrait=0&title=0&byline=0"
+  frameborder="0"
+  webkitallowfullscreen
+  mozallowfullscreen
+  allowfullscreen>
+</iframe>
+```
+
+Or with a custom title:
+
+```
+$~vimeo_video
+  146226360
+  The title of this video
 ~$
 
 ```
@@ -185,6 +274,7 @@ Outputs:
 
 ```
 <iframe src="https://player.vimeo.com/video/146226360?portrait=0&title=0&byline=0"
+  title="The title of this video"
   frameborder="0"
   webkitallowfullscreen
   mozallowfullscreen
