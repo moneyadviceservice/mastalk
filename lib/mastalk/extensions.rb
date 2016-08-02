@@ -27,6 +27,7 @@ module Mastalk
         content = File.read(File.join(SNIPPETS_FOLDER, file))
         start, stop = args(content)
         extension(start, stop) do |body|
+          body_lines = body.strip.gsub(/(\n|\r)+/, "\n").split(/\n/)
           ERB.new(remove_syntax_from(content)).result(binding)
         end
       end

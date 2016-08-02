@@ -142,11 +142,32 @@ describe Mastalk::Document do
     end
   end
 
-  context 'bright video' do
-    let(:source) { "$~brightcove_video3739688349001~$" }
+  context 'when brightcove video' do
+    let(:video_id) { '3739688349001' }
 
-    it 'pre-processes correctly' do
-      expect(subject.to_html).to include('//players.brightcove.net/3608769895001/b15c0e6a-51da-4bb1-b717-bccae778670d_default/index.html?videoId=3739688349001')
+    context 'without a title' do
+      let(:source) { "$~brightcove_video#{video_id}~$" }
+
+      it 'outputs the brightcove embed video' do
+        expect(subject.to_html).to include("src=\"//players.brightcove.net/3608769895001/b15c0e6a-51da-4bb1-b717-bccae778670d_default/index.html?videoId=#{video_id}\"")
+      end
+
+      it 'outputs sets a default title on the iframe' do
+        expect(subject.to_html).to include('title="Video"')
+      end
+    end
+
+    context 'without a custom title' do
+      let(:title) { 'a custom video title'}
+      let(:source) { "$~brightcove_video#{video_id}\n#{title}~$" }
+
+      it 'outputs the brightcove embed video' do
+        expect(subject.to_html).to include("src=\"//players.brightcove.net/3608769895001/b15c0e6a-51da-4bb1-b717-bccae778670d_default/index.html?videoId=#{video_id}\"")
+      end
+
+      it 'outputs sets a default title on the iframe' do
+        expect(subject.to_html).to include("title=\"#{title}\"")
+      end
     end
   end
 
@@ -158,7 +179,7 @@ describe Mastalk::Document do
     end
   end
 
-  context 'when youtube video' do
+  context 'when youtube video (legacy format)' do
     let(:source) { '({oZ0_U108aZw})' }
 
     it 'outputs the youtube embed video' do
@@ -166,11 +187,61 @@ describe Mastalk::Document do
     end
   end
 
-  context 'vimeo video' do
-    let(:source) { "$~vimeo_video145743834~$" }
+  context 'when youtube video (new format)' do
+    let(:video_id) { 'oZ0_U108aZw' }
 
-    it 'pre-processes correctly' do
-      expect(subject.to_html).to include('https://player.vimeo.com/video/145743834?portrait=0&title=0&byline=0')
+    context 'without a title' do
+      let(:source) { "$~youtube_video#{video_id}~$" }
+
+      it 'outputs the youtube embed video' do
+        expect(subject.to_html).to include("src=\"https://www.youtube.com/embed/#{video_id}?rel=0\"")
+      end
+
+      it 'outputs sets a default title on the iframe' do
+        expect(subject.to_html).to include('title="Video"')
+      end
+    end
+
+    context 'without a custom title' do
+      let(:title) { 'a custom video title' }
+      let(:source) { "$~youtube_video#{video_id}\n#{title}~$" }
+
+      it 'outputs the youtube embed video' do
+        expect(subject.to_html).to include("src=\"https://www.youtube.com/embed/#{video_id}?rel=0\"")
+      end
+
+      it 'outputs sets a default title on the iframe' do
+        expect(subject.to_html).to include("title=\"#{title}\"")
+      end
+    end
+  end
+
+  context 'when vimeo video' do
+    let(:video_id) { '145743834' }
+
+    context 'without a title' do
+      let(:source) { "$~vimeo_video#{video_id}~$" }
+
+      it 'outputs the vimeo embed video' do
+        expect(subject.to_html).to include("src=\"https://player.vimeo.com/video/#{video_id}?portrait=0&title=0&byline=0\"")
+      end
+
+      it 'outputs sets a default title on the iframe' do
+        expect(subject.to_html).to include('title="Video"')
+      end
+    end
+
+    context 'without a custom title' do
+      let(:title) { 'a custom video title' }
+      let(:source) { "$~vimeo_video#{video_id}\n#{title}~$" }
+
+      it 'outputs the vimeo embed video' do
+        expect(subject.to_html).to include("src=\"https://player.vimeo.com/video/#{video_id}?portrait=0&title=0&byline=0\"")
+      end
+
+      it 'outputs sets a default title on the iframe' do
+        expect(subject.to_html).to include("title=\"#{title}\"")
+      end
     end
   end
 

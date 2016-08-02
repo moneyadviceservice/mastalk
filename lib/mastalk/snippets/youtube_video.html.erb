@@ -1,0 +1,9 @@
+# $~youtube_video, ~$
+
+<iframe
+  frameborder="0"
+  height="413"
+  width="680"
+  src= "<%= "https://www.youtube.com/embed/#{body_lines[0].strip}?rel=0" %>"
+  title="<%= (body_lines[1] || 'Video').strip %>">
+</iframe>
