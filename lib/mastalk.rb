@@ -14,14 +14,16 @@ module Mastalk
       @source = source.dup
     end
 
-    def to_html
-      ::HTMLEntities.new.decode( kramdown.to_html )
+    def to_html(options = {})
+      options[:auto_id] = options[:auto_id].nil? ? true : options[:auto_id]
+      ::HTMLEntities.new.decode( kramdown(options).to_html() )
     end
 
     private
 
-    def kramdown
-      Kramdown::Document.new(preprocess(source))
+    def kramdown(options = {})
+      options[:auto_id] = options[:auto_id].nil? ? true : options[:auto_id]
+      Kramdown::Document.new(preprocess(source), :auto_ids => options[:auto_id])
     end
 
     def preprocess(source)

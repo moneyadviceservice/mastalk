@@ -12,6 +12,10 @@ describe Mastalk::Document do
       expect(Mastalk::Document.new('test').to_html).to eq("<p>test</p>\n")
     end
 
+    it 'generates automatic ID attributes on headings' do
+      expect(Mastalk::Document.new('##test').to_html).to eq(%Q(<h2 id="test">test</h2>\n))
+    end
+
     it 'converts to html' do
       expect(subject.to_html).to eq(expected)
     end
@@ -98,10 +102,10 @@ describe Mastalk::Document do
     let(:source) { "$~callout\n ##yes ~$ $~callout\n ##yes ~$" }
 
     let(:expected) do
-      "<div class=\"callout\">\n  <h2 id=\"yes\">yes</h2>\n\n</div>\n<div class=\"callout\">\n  <h2 id=\"yes\">yes</h2>\n\n</div>\n"
+      %Q(<div class="callout">\n  <h2>yes</h2>\n\n</div>\n<div class="callout">\n  <h2>yes</h2>\n\n</div>\n)
     end
 
-    it 'pre-processes correctly' do
+    it 'pre-processes correctly, without adding ids to headings' do
       expect(subject.to_html).to eq(expected)
     end
   end
