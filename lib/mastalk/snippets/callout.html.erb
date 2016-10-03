@@ -1,5 +1,5 @@
 # $~callout, ~$
 
 <div class='callout'>
-  <%= Mastalk::Document.new(body.strip).to_html %>
+  <%= Mastalk::Document.new(body.strip).to_html(:auto_id => false) %>
 </div>
