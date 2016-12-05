@@ -102,7 +102,7 @@ describe Mastalk::Document do
     let(:source) { "$~callout\n ##yes ~$ $~callout\n ##yes ~$" }
 
     let(:expected) do
-      %Q(<div class="callout">\n  <span class="callout__icon" aria-hidden="true">?</span>\n  <h2>yes</h2>\n\n</div>\n<div class="callout">\n  <span class="callout__icon" aria-hidden="true">?</span>\n  <h2>yes</h2>\n\n</div>\n)
+      %Q(<div class="callout callout--tip">\n  <span class="callout__icon" aria-hidden="true">?</span>\n  <h2>yes</h2>\n\n</div>\n<div class="callout callout--tip">\n  <span class="callout__icon" aria-hidden="true">?</span>\n  <h2>yes</h2>\n\n</div>\n)
     end
 
     it 'pre-processes correctly, without adding ids to headings' do
