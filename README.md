@@ -364,3 +364,25 @@ Outputs:
 ```
 
 `$bl_c` `$bl_m` positioning can be swapped around to switch element positions.
+
+### Profiling Mastalk
+
+Inside of the project you can run:
+
+```
+ruby -Ilib ./bin/mastalk-profiling
+```
+
+This command will generate different types of graphs and the ruby stack
+for you investigate possible bottlenecks on performance.
+
+### Benchmarking Mastalk
+
+Inside of the project you can run:
+
+```
+ruby -Ilib ./bin/mastalk-benchmarking
+```
+
+This command will print different benchmarking for Mastalk when parsing
+10, 100, 200 and 500 documents.

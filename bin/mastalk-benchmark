@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+require 'mastalk'
+require 'ruby-prof'
+require 'benchmark'
+
+class MastalkBenchmark
+  def initialize(documents:)
+    @documents_size = documents
+    @cms_page_content = File.read(File.join('spec', 'fixtures', 'cms_page_content'))
+  end
+
+  def to_html
+    @documents_size.times do
+      Mastalk::Document.new(@cms_page_content).to_html
+    end
+  end
+end
+
+Benchmark.bm do |x|
+  x.report('Parsing 10 documents') do
+    MastalkBenchmark.new(documents: 10).to_html
+  end
+
+  x.report('Parsing 100 documents') do
+    MastalkBenchmark.new(documents: 100).to_html
+  end
+
+  x.report('Parsing 200 documents') do
+    MastalkBenchmark.new(documents: 200).to_html
+  end
+
+  x.report('Parsing 500 documents') do
+    MastalkBenchmark.new(documents: 500).to_html
+  end
+end
