@@ -32,4 +32,8 @@ Benchmark.bm do |x|
   x.report('Parsing 500 documents') do
     MastalkBenchmark.new(documents: 500).to_html
   end
+
+  x.report('Parsing 1000 documents') do
+    MastalkBenchmark.new(documents: 1000).to_html
+  end
 end
