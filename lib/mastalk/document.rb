@@ -15,16 +15,16 @@ module Mastalk
     end
 
     def to_html(options = {})
-      options[:auto_id] = options[:auto_id].nil? ? true : options[:auto_id]
-      ::HTMLEntities.new.decode(kramdown(options).to_html())
+      auto_ids = options[:auto_id].nil? ? true : options[:auto_ids]
+      kramdown = Kramdown::Document.new(
+        preprocess(source),
+        auto_ids: auto_ids
+      )
+      html, _ = Kramdown::Converter::Html.convert(kramdown.root, kramdown.options)
+      ::HTMLEntities.new.decode(html)
     end
 
     private
-
-    def kramdown(options = {})
-      options[:auto_id] = options[:auto_id].nil? ? true : options[:auto_id]
-      Kramdown::Document.new(preprocess(source), auto_ids: options[:auto_id])
-    end
 
     def preprocess(source)
       # Attempt 2
