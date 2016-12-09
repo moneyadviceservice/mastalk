@@ -4,7 +4,7 @@ require 'ruby-prof'
 
 cms_page_content = File.read(File.join('spec', 'fixtures', 'cms_page_content'))
 
-PAGES_SIZE = 200
+PAGES_SIZE = 500
 
 puts '*' * 80
 puts "Profiling: parsing #{PAGES_SIZE} pages."
