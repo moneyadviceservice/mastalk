@@ -18,15 +18,4 @@ RSpec.describe 'Integration Tests' do
       expect(document.to_html).to eq(expected_result)
     end
   end
-
-  context 'when parsing complex document' do
-    let(:content) do
-      File.read(File.join('spec', 'fixtures', 'complex_document'))
-    end
-
-    it 'converts to html using snippers' do
-      pending
-      expect(document.to_html).to eq('')
-    end
-  end
 end
