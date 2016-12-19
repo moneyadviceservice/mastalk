@@ -1,4 +1,7 @@
 #!/usr/bin/env ruby
+require 'bundler/setup'
+Bundler.require(:profile)
+
 %w(benchmark kramdown bluecloth rdiscount).each do |lib|
   require lib
 end
