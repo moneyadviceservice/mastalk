@@ -364,3 +364,38 @@ Outputs:
 ```
 
 `$bl_c` `$bl_m` positioning can be swapped around to switch element positions.
+
+### Profiling Mastalk
+
+Inside of the project you can run:
+
+```
+ruby -Ilib ./bin/mastalk-profiling
+```
+
+This command will generate different types of graphs and the ruby stack
+for you investigate possible bottlenecks on performance.
+
+### Benchmarking Mastalk
+
+Inside of the project you can run:
+
+```
+ruby -Ilib ./bin/mastalk-benchmarking
+```
+
+This command will print different benchmarking for Mastalk when parsing
+10, 100, 200 and 500 documents.
+
+## Release the mastalk gem
+
+Get a login for rubygems.org and get added as a contributor to the mastalk
+gem.
+
+1) Update the version number in mastalk.gemspec
+2) Run bundle
+3) On the master branch, commit the changes. (e.g 'Bump version 0.0.1 ->
+0.0.2')
+4) Tag the git commit with the bump version: `git tag -a v<version here>`
+5) Build the gem: `gem build mastalk.gemspec`
+6) Publish the new gem to rubygems: `gem push mastalk-<version here>.gem

@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+require 'bundler/setup'
+Bundler.require(:profile)
+
+%w(benchmark kramdown bluecloth rdiscount).each do |lib|
+  require lib
+end
+
+require 'mastalk'
+
+n  = 1000
+mastalk = Mastalk::Document.new(File.read(File.join('spec', 'fixtures', 'cms_page_content')))
+markdown = mastalk.send(:preprocess, mastalk.source)
+
+def parse_markdown(parser, markdown)
+  parser.new(markdown).to_html
+end
+
+Benchmark.bm 15 do |x|
+  x.report('Kramdown') do
+    n.times { parse_markdown Kramdown::Document, markdown }
+  end
+
+  x.report('Bluecloth') do
+    n.times { parse_markdown BlueCloth, markdown }
+  end
+
+  x.report('RDiscount') do
+    n.times { parse_markdown RDiscount, markdown }
+  end
+end

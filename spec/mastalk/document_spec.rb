@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Mastalk::Document do
-
   context 'Without mastalk syntax' do
     let(:context) { "###test\nwith markdown" }
     let(:expected) { "<h3 id=\"test\">test</h3>\n<p>with markdown</p>\n" }
@@ -284,5 +283,4 @@ describe Mastalk::Document do
       expect(subject.to_html).to eq(expected)
     end
   end
-
 end
