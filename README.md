@@ -365,6 +365,30 @@ Outputs:
 
 `$bl_c` `$bl_m` positioning can be swapped around to switch element positions.
 
+### FinCap Feedback Component
+
+```
+$fincap_feedback
+  EMAIL@ADDRESS.com
+$
+```
+
+Outputs:
+
+```
+<div class="feedback-box">
+  <h3 class="feedback-box__title">
+    Give us your feedback or ask a question
+  </h3>
+  <svg xmlns="http://www.w3.org/2000/svg" class="feedback-box__icon svg-icon svg-icon--speech" focusable="false">
+    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-icon--speech"></use>
+  </svg>
+  <a href="mailto:EMAIL@ADDRESS.com" class="feedback-box__text">
+    EMAIL@ADDRESS.com
+  </a>
+</div>
+```
+
 ### Profiling Mastalk
 
 Inside of the project you can run:

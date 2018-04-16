@@ -283,4 +283,17 @@ describe Mastalk::Document do
       expect(subject.to_html).to eq(expected)
     end
   end
+
+  context 'Fincap Feedback UI Component' do
+    let(:email_address) { 'test@email.com' }
+    let(:source) { "$fincap_feedback#{email_address}$" }
+
+    let(:expected) do
+      %(<a href="mailto:#{email_address}" class="feedback-box__text">)
+    end
+
+    it 'outputs the correct mailto link' do
+      expect(subject.to_html).to include(expected)
+    end
+  end
 end
