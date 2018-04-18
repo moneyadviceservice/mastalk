@@ -389,6 +389,22 @@ Outputs:
 </div>
 ```
 
+### FinCap Primary Button 
+
+```
+$~fincap_primary_button
+  [Link Text](LINK_URL)
+$
+```
+
+Outputs:
+
+```
+<span class="article__primary-button">
+  <a href="LINK_URL">Link Text</a>
+</span>
+```
+
 ### Profiling Mastalk
 
 Inside of the project you can run:
