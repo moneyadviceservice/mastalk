@@ -296,4 +296,18 @@ describe Mastalk::Document do
       expect(subject.to_html).to include(expected)
     end
   end
+
+  context 'Fincap Primary Button' do
+    let(:link_text) { 'test text' }
+    let(:link_url) { 'https://www.moneyadviceservice.org.uk' }
+    let(:source) { "$~fincap_primary_button[#{link_text}](#{link_url})~$" }
+
+    let(:expected) do
+      %(<a href="#{link_url}">#{link_text}</a>)
+    end
+
+    it 'outputs the correct link url and text' do
+      expect(subject.to_html).to include(expected)
+    end
+  end
 end

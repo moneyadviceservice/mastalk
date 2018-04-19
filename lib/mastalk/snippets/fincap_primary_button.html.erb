@@ -1,0 +1,5 @@
+# $~fincap_primary_button, ~$
+
+<span class="article__primary-button">
+  <%= Mastalk::Document.new(body.strip).to_html.gsub(/<p>|<\/p>|\n/, '') %>
+</span>
