@@ -24,6 +24,7 @@ module Mastalk
 
       Dir.foreach(SNIPPETS_FOLDER) do |file|
         next if file == '.' || file == '..'
+
         content = File.read(File.join(SNIPPETS_FOLDER, file))
         start, stop = args(content)
         erb = ERB.new(remove_syntax_from(content))

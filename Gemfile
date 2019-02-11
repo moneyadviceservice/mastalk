@@ -4,9 +4,12 @@ gemspec
 
 group :profile do
   gem 'bluecloth'
-  gem 'pry-byebug'
   gem 'rdiscount'
   gem 'ruby-prof', require: false
+end
+
+group :development, :profile, :test do
+  gem 'pry-byebug'
 end
 
 group :test do

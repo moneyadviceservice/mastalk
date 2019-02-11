@@ -12,7 +12,7 @@ describe Mastalk::Document do
     end
 
     it 'generates automatic ID attributes on headings' do
-      expect(Mastalk::Document.new('##test').to_html).to eq(%Q(<h2 id="test">test</h2>\n))
+      expect(Mastalk::Document.new('##test').to_html).to eq(%(<h2 id="test">test</h2>\n))
     end
 
     it 'converts to html' do
@@ -89,11 +89,11 @@ describe Mastalk::Document do
     let(:source) { "$yes-no\n [y] **yes** [/y] \n $end $yes-no\ [n] **no** [/n] \n $end" }
 
     let(:expected) do
-      "<ul class=\"yes-no\"><li class=\"yes\"><strong>yes</strong></li></ul><ul class=\"yes-no\"><li class=\"no\"><strong>no</strong></li></ul>"
+      '<ul class="yes-no"><li class="yes"><strong>yes</strong></li></ul><ul class="yes-no"><li class="no"><strong>no</strong></li></ul>'
     end
 
     it 'pre-processes correctly' do
-      expect(subject.to_html.gsub("\n", '')).to eq(expected)
+      expect(subject.to_html.delete("\n")).to eq(expected)
     end
   end
 
@@ -101,7 +101,7 @@ describe Mastalk::Document do
     let(:source) { "$~callout\n ##yes ~$ $~callout\n ##yes ~$" }
 
     let(:expected) do
-      %Q(<div class="callout callout--tip">\n  <span class="callout__icon" aria-hidden="true">?</span>\n  <h2>yes</h2>\n\n</div>\n<div class="callout callout--tip">\n  <span class="callout__icon" aria-hidden="true">?</span>\n  <h2>yes</h2>\n\n</div>\n)
+      %(<div class="callout callout--tip">\n  <span class="callout__icon" aria-hidden="true">?</span>\n  <h2>yes</h2>\n\n</div>\n<div class="callout callout--tip">\n  <span class="callout__icon" aria-hidden="true">?</span>\n  <h2>yes</h2>\n\n</div>\n)
     end
 
     it 'pre-processes correctly, without adding ids to headings' do
@@ -134,7 +134,7 @@ describe Mastalk::Document do
   end
 
   context 'line breaks' do
-    let(:source) { "@~ @~" }
+    let(:source) { '@~ @~' }
 
     let(:expected) do
       "<p><br /> <br /></p>\n"
@@ -161,7 +161,7 @@ describe Mastalk::Document do
     end
 
     context 'without a custom title' do
-      let(:title) { 'a custom video title'}
+      let(:title) { 'a custom video title' }
       let(:source) { "$~brightcove_video#{video_id}\n#{title}~$" }
 
       it 'outputs the brightcove embed video' do
@@ -175,7 +175,7 @@ describe Mastalk::Document do
   end
 
   context 'cost calculator' do
-    let(:source) {"$~cost-calc1~$"}
+    let(:source) { '$~cost-calc1~$' }
 
     it 'pre-processes correctly' do
       expect(subject.to_html).to include('https://www.moneyadviceservice.org.uk/en/cost-calculator-builder/embed/calculators/1')
