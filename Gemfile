@@ -8,3 +8,8 @@ group :profile do
   gem 'rdiscount'
   gem 'ruby-prof', require: false
 end
+
+group :test do
+  gem 'danger', require: false
+  gem 'danger-rubocop', require: false
+end
