@@ -8,11 +8,16 @@ group :profile do
   gem 'ruby-prof', require: false
 end
 
-group :development, :profile, :test do
-  gem 'pry-byebug'
+group :development do
+  gem 'rubocop'
 end
 
 group :test do
   gem 'danger', require: false
   gem 'danger-rubocop', require: false
+  gem 'rspec'
+end
+
+group :development, :profile, :test do
+  gem 'pry-byebug'
 end
