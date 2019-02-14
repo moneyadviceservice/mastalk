@@ -20,7 +20,7 @@ module Mastalk
         preprocess(source),
         auto_ids: auto_ids
       )
-      html, _ = Kramdown::Converter::Html.convert(kramdown.root, kramdown.options)
+      html, = Kramdown::Converter::Html.convert(kramdown.root, kramdown.options)
       ::HTMLEntities.new.decode(html)
     end
 
